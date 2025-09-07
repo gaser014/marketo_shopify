@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketo - Flutter E-Commerce App with Shopify Integration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #F7931E 0%, #FF6B35 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 0;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            overflow-x: auto;
+        }
+
+        .nav-tab {
+            padding: 20px 30px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #6c757d;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .nav-tab:hover {
+            color: #495057;
+            background: rgba(247, 147, 30, 0.1);
+        }
+
+        .nav-tab.active {
+            color: #F7931E;
+            background: white;
+        }
+
+        .nav-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #F7931E;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #F7931E 0%, #FF6B35 100%);
+            padding: 30px;
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-card ul {
+            list-style: none;
+        }
+
+        .feature-card li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .feature-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .integration-section {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 40px;
+            border-radius: 15px;
+            color: white;
+            margin: 40px 0;
+        }
+
+        .integration-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .step-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: white;
+            color: #4facfe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .tech-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .spec-card {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .spec-card h4 {
+            color: #2d3748;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .spec-card ul {
+            list-style: none;
+        }
+
+        .spec-card li {
+            padding: 5px 0;
+            color: #4a5568;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .spec-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block::before {
+            content: 'CODE';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 0.8rem;
+            color: #a0aec0;
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .author-info {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .author-info h3 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .author-info p {
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 172, 254, 0.3);
+        }
+
+        .icon {
+            font-size: 1.2rem;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .screens-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .screen-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .screen-item:hover {
+            transform: scale(1.05);
+        }
+
+        .app-gallery {
+            margin: 40px 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            border-radius: 10px 10px 0 0;
+            /* High-quality image rendering */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: pixelated;
+            image-rendering: auto;
+            /* Force smooth scaling */
+            -ms-interpolation-mode: bicubic;
+            /* Hardware acceleration */
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform: translateZ(0) scale(1);
+            transform: translateZ(0) scale(1);
+            /* Anti-aliasing and smoothing */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            /* Enhanced visual quality */
+            filter: contrast(1.08) saturate(1.12) brightness(1.03) blur(0px) sharpen(0.5px);
+            -webkit-filter: contrast(1.08) saturate(1.12) brightness(1.03) blur(0px);
+            /* Prevent pixelation on scaling */
+            will-change: transform, filter;
+            /* Better quality scaling */
+            object-position: center;
+            /* Smooth edges */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05) translateZ(0);
+            filter: contrast(1.12) saturate(1.18) brightness(1.06) blur(0px) sharpen(1px);
+            -webkit-filter: contrast(1.12) saturate(1.18) brightness(1.06) blur(0px);
+        }
+
+        .gallery-item .caption {
+            padding: 15px;
+            text-align: center;
+            font-weight: 500;
+            color: #2d3748;
+            background: linear-gradient(135deg, #F7931E 0%, #FF6B35 100%);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                padding: 15px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .tab-content {
+                padding: 20px;
+            }
+            
+            .feature-grid,
+            .integration-steps,
+            .tech-specs {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-mobile-alt"></i> Marketo</h1>
+            <p class="subtitle">The Ultimate E-Commerce User Flutter App with Shopify Integration</p>
+        </div>
+
+        <div class="main-content">
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="showTab('overview')">
+                    <i class="fas fa-home icon"></i> Overview
+                </button>
+                <button class="nav-tab" onclick="showTab('shopify')">
+                    <i class="fab fa-shopify icon"></i> Shopify Integration
+                </button>
+                <button class="nav-tab" onclick="showTab('features')">
+                    <i class="fas fa-star icon"></i> Features
+                </button>
+                <button class="nav-tab" onclick="showTab('technical')">
+                    <i class="fas fa-cog icon"></i> Technical
+                </button>
+                <button class="nav-tab" onclick="showTab('installation')">
+                    <i class="fas fa-download icon"></i> Installation
+                </button>
+                <button class="nav-tab" onclick="showTab('configuration')">
+                    <i class="fas fa-tools icon"></i> Configuration
+                </button>
+            </div>
+
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content active">
+                <h2 class="section-title">🚀 Project Overview</h2>
+                <div class="highlight">
+                    <p><strong>Marketo</strong> delivers a seamless Flutter application tailored for users, enhancing their shopping experience. Designed to integrate with Shopify, it provides a clean and efficient platform for browsing and purchasing products directly from your Shopify store.</p>
+                </div>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3><i class="fas fa-shopping-cart"></i> E-Commerce Ready</h3>
+                        <ul>
+                            <li>Complete shopping experience</li>
+                            <li>Product browsing & search</li>
+                            <li>Cart management</li>
+                            <li>Order tracking</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3><i class="fab fa-shopify"></i> Shopify Powered</h3>
+                        <ul>
+                            <li>Direct Shopify integration</li>
+                            <li>Real-time product sync</li>
+                            <li>Secure checkout process</li>
+                            <li>Inventory management</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3><i class="fas fa-mobile-alt"></i> Flutter Built</h3>
+                        <ul>
+                            <li>Cross-platform compatibility</li>
+                            <li>Native performance</li>
+                            <li>Beautiful UI/UX</li>
+                            <li>Responsive design</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="app-gallery">
+                    <h3 style="text-align: center; color: #2d3748; margin-bottom: 30px;">
+                        <i class="fas fa-images"></i> App Screenshots
+                    </h3>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="https://i.postimg.cc/YCJDY8cb/Welcome-Back.png"
+                                 alt="Welcome Screen" 
+                                 loading="eager" 
+                                 decoding="sync"
+                                 fetchpriority="high">
+                            <div class="caption">Welcome Screen</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.postimg.cc/1X5vsj65/Explore-Our-Collection.png"
+                                 alt="Product Collection" 
+                                 loading="eager" 
+                                 decoding="sync"
+                                 fetchpriority="high">
+                            <div class="caption">Product Collection</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.postimg.cc/jSWkDm1D/Inline-Preview-Image.png"
+                                 alt="Product Preview" 
+                                 loading="eager" 
+                                 decoding="sync"
+                                 fetchpriority="high">
+                            <div class="caption">Product Preview</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.postimg.cc/C14vygRQ/Your-Shopping-Cart.png"
+                                 alt="Shopping Cart" 
+                                 loading="eager" 
+                                 decoding="sync"
+                                 fetchpriority="high">
+                            <div class="caption">Shopping Cart</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.postimg.cc/439MSqvD/3.png"
+                                 alt="App Interface" 
+                                 loading="eager" 
+                                 decoding="sync"
+                                 fetchpriority="high">
+                            <div class="caption">App Interface</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.postimg.cc/fWKPpxXR/4.png"
+                                 alt="Product Details" 
+                                 loading="eager" 
+                                 decoding="sync"
+                                 fetchpriority="high">
+                            <div class="caption">Product Details</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.postimg.cc/Pr57jPzz/508.png"
+                                 alt="Category View" 
+                                 loading="eager" 
+                                 decoding="sync"
+                                 fetchpriority="high">
+                            <div class="caption">Category View</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.postimg.cc/gJy7YhT4/511.png"
+                                 alt="Search Results" 
+                                 loading="eager" 
+                                 decoding="sync"
+                                 fetchpriority="high">
+                            <div class="caption">Search Results</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.postimg.cc/L5N0PpR1/7.png"
+                                 alt="User Profile" 
+                                 loading="eager" 
+                                 decoding="sync"
+                                 fetchpriority="high">
+                            <div class="caption">User Profile</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.postimg.cc/ZKsMK4wk/code.png"
+                                 alt="Code Structure" 
+                                 loading="eager" 
+                                 decoding="sync"
+                                 fetchpriority="high">
+                            <div class="caption">Code Structure</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shopify Integration Tab -->
+            <div id="shopify" class="tab-content">
+                <h2 class="section-title">🛍️ Shopify Integration</h2>
+                
+                <div class="integration-section">
+                    <h3><i class="fas fa-rocket"></i> Quick Setup Guide</h3>
+                    <div class="integration-steps">
+                        <div class="step-card">
+                            <div class="step-number">1</div>
+                            <h4>Create Shopify App</h4>
+                            <p>Navigate to Settings → Apps → App Development → Create an App</p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-number">2</div>
+                            <h4>Generate Tokens</h4>
+                            <p>Create Admin API and Storefront API access tokens</p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-number">3</div>
+                            <h4>Set Permissions</h4>
+                            <p>Configure read/write permissions for products and collections</p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-number">4</div>
+                            <h4>Configure App</h4>
+                            <p>Update GraphQL configuration with your tokens</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3><i class="fas fa-key"></i> API Token Comparison</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Token Type</th>
+                            <th>Admin API Token</th>
+                            <th>Storefront API Token</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Usage</strong></td>
+                            <td>Backend operations (REST/GraphQL)</td>
+                            <td>Frontend customer interactions (GraphQL)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Header</strong></td>
+                            <td>X-Shopify-Access-Token</td>
+                            <td>X-Shopify-Storefront-Access-Token</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Access Level</strong></td>
+                            <td>Full store management</td>
+                            <td>Limited to storefront data</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight">
+                    <h4><i class="fas fa-code"></i> Required Permissions</h4>
+                    <ul>
+                        <li><strong>read_products</strong> - View product information</li>
+                        <li><strong>write_products</strong> - Manage product data</li>
+                        <li><strong>read_collections</strong> - Access product collections</li>
+                        <li><strong>write_collections</strong> - Manage collections</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Features Tab -->
+            <div id="features" class="tab-content">
+                <h2 class="section-title">✨ App Features</h2>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3><i class="fas fa-search"></i> Product Discovery</h3>
+                        <ul>
+                            <li>Browse by main categories</li>
+                            <li>Search products by name</li>
+                            <li>Filter by attributes</li>
+                            <li>View "Limited Quantity" items</li>
+                            <li>Explore "New Arrivals"</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3><i class="fas fa-user"></i> Personalized Experience</h3>
+                        <ul>
+                            <li>Categorized product browsing</li>
+                            <li>Personalized recommendations</li>
+                            <li>Browsing history tracking</li>
+                            <li>Special offers & deals</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3><i class="fas fa-shopping-bag"></i> Shopping Features</h3>
+                        <ul>
+                            <li>Detailed product pages</li>
+                            <li>Product variants support</li>
+                            <li>Shopping cart management</li>
+                            <li>Coupon application</li>
+                            <li>Order tracking</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3><i class="fas fa-mobile-alt"></i> Key App Screens</h3>
+                <div class="screens-grid">
+                    <div class="screen-item">🏠 Home Screen</div>
+                    <div class="screen-item">📂 Category Browse</div>
+                    <div class="screen-item">🔍 Product Search</div>
+                    <div class="screen-item">📱 Product Details</div>
+                    <div class="screen-item">🛒 Shopping Cart</div>
+                    <div class="screen-item">💳 Shopify Checkout</div>
+                    <div class="screen-item">📋 Order History</div>
+                    <div class="screen-item">👤 Account Management</div>
+                </div>
+
+                <div class="highlight">
+                    <h4><i class="fas fa-list-ol"></i> Order Processing Flow</h4>
+                    <ol>
+                        <li>Product selection with variant options</li>
+                        <li>Shopping cart management</li>
+                        <li>Coupon application</li>
+                        <li>Shipping information collection</li>
+                        <li>Order confirmation with unique ID</li>
+                        <li>Real-time status tracking</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Technical Tab -->
+            <div id="technical" class="tab-content">
+                <h2 class="section-title">⚙️ Technical Specifications</h2>
+                
+                <div class="tech-specs">
+                    <div class="spec-card">
+                        <h4><i class="fas fa-language"></i> Multilingual Support</h4>
+                        <ul>
+                            <li>Arabic (ar)</li>
+                            <li>English (en)</li>
+                            <li>Easy to add more languages</li>
+                        </ul>
+                    </div>
+                    <div class="spec-card">
+                        <h4><i class="fas fa-cube"></i> Flutter Dependencies</h4>
+                        <ul>
+                            <li><strong>graphql_flutter</strong> - Shopify GraphQL</li>
+                            <li><strong>flutter_inappwebview</strong> - Checkout</li>
+                            <li><strong>easy_localization</strong> - Multi-language</li>
+                            <li><strong>flutter_bloc</strong> - State management</li>
+                            <li><strong>cached_network_image</strong> - Images</li>
+                            <li><strong>hive</strong> - Local storage</li>
+                        </ul>
+                    </div>
+                    <div class="spec-card">
+                        <h4><i class="fab fa-shopify"></i> Shopify Requirements</h4>
+                        <ul>
+                            <li>Active Shopify store</li>
+                            <li>API access enabled</li>
+                            <li>Admin & Storefront tokens</li>
+                            <li>GraphQL configuration</li>
+                            <li>Product permissions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Installation Tab -->
+            <div id="installation" class="tab-content">
+                <h2 class="section-title">📥 Installation Guide</h2>
+                
+                <div class="highlight">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Prerequisites</h4>
+                    <ol>
+                        <li>Flutter SDK installed (<a href="https://flutter.dev/docs/get-started/install" target="_blank">Flutter.dev</a>)</li>
+                        <li>VS Code or Android Studio</li>
+                        <li>Android emulator or physical device</li>
+                        <li>Active Shopify store with API access</li>
+                    </ol>
+                </div>
+
+                <h3><i class="fas fa-play"></i> Quick Start</h3>
+                <div class="code-block">
+# Clone the repository
+git clone [repository-url]
+
+# Navigate to project directory
+cd marketo_shopify
+
+# Install dependencies
+flutter pub get
+
+# Run the app
+flutter run
+                </div>
+
+                <div class="integration-steps">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4>Download & Extract</h4>
+                        <p>Extract the project files to your desired location</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4>Install Dependencies</h4>
+                        <p>Run <code>flutter pub get</code> in the project directory</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4>Configure Shopify</h4>
+                        <p>Update GraphQL configuration with your tokens</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h4>Run & Test</h4>
+                        <p>Launch the app and test with your Shopify store</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Configuration Tab -->
+            <div id="configuration" class="tab-content">
+                <h2 class="section-title">🔧 Configuration</h2>
+                
+                <h3><i class="fas fa-folder-tree"></i> Project Structure</h3>
+                <div class="code-block">
+marketo_shopify/
+├── lib/
+│   ├── core/
+│   │   ├── databases/
+│   │   │   └── graphql/
+│   │   │       └── graph_ql.dart
+│   │   └── enum/
+│   │       └── enums.dart
+│   ├── features/
+│   └── main.dart
+├���─ assets/
+│   ├── lang/
+│   │   ├── ar.json
+│   │   └── en.json
+│   ├── fonts/
+│   └── icons/
+└── pubspec.yaml
+                </div>
+
+                <div class="tech-specs">
+                    <div class="spec-card">
+                        <h4><i class="fas fa-file-code"></i> Key Files</h4>
+                        <ul>
+                            <li><strong>graph_ql.dart</strong> - Shopify GraphQL setup</li>
+                            <li><strong>enums.dart</strong> - Language configuration</li>
+                            <li><strong>assets/lang/</strong> - Translation files</li>
+                            <li><strong>pubspec.yaml</strong> - Dependencies</li>
+                        </ul>
+                    </div>
+                    <div class="spec-card">
+                        <h4><i class="fas fa-language"></i> Adding Languages</h4>
+                        <ul>
+                            <li>Create JSON file in assets/lang/</li>
+                            <li>Update supportedLocales in main.dart</li>
+                            <li>Add to languageList in enums.dart</li>
+                            <li>Use en.json as reference</li>
+                        </ul>
+                    </div>
+                    <div class="spec-card">
+                        <h4><i class="fas fa-store"></i> Shopify Store Setup</h4>
+                        <ul>
+                            <li>Products with variants & pricing</li>
+                            <li>Collections organized</li>
+                            <li>API permissions configured</li>
+                            <li>Tokens generated & active</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight">
+                    <h4><i class="fas fa-code"></i> Language Configuration Example</h4>
+                    <div class="code-block">
+{
+    "welcome": "Welcome to Marketo",
+    "products": "Products",
+    "cart": "Shopping Cart",
+    "checkout": "Checkout"
+}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <h2><i class="fas fa-rocket"></i> Get Started</h2>
+            <p>Ready to integrate Marketo with your Shopify store? Follow our comprehensive setup guide to get started!</p>
+            <div style="margin-top: 20px;">
+                <p style="font-size: 1.1rem; margin-bottom: 15px;"><strong>Quick Setup Steps:</strong></p>
+                <p>1. Configure your Shopify API tokens</p>
+                <p>2. Update GraphQL configuration</p>
+                <p>3. Run flutter pub get</p>
+                <p>4. Launch your app with flutter run</p>
+            </div>
+        </div>
+
+        <div class="author-info">
+            <h3><i class="fas fa-user-circle"></i> Created by MDSoft</h3>
+            <p>Professional Flutter & E-Commerce Development</p>
+            <p><strong>Created:</strong> January 2025</p>
+            <a href="mailto:moradabdelgaber1@gmail.com" class="contact-btn">
+                <i class="fas fa-envelope"></i> Contact Support
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Smooth scrolling for better UX
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scroll behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Add loading animation
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
