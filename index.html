@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +39,7 @@
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .header .subtitle {
@@ -52,7 +53,7 @@
         .main-content {
             background: white;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             margin-bottom: 40px;
         }
@@ -108,8 +109,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .section-title {
@@ -132,7 +140,7 @@
             padding: 30px;
             border-radius: 15px;
             color: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
 
@@ -182,11 +190,11 @@
         }
 
         .step-card {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             padding: 25px;
             border-radius: 10px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .step-number {
@@ -209,7 +217,7 @@
             background: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .comparison-table th {
@@ -240,7 +248,7 @@
             background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
             padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .spec-card h4 {
@@ -322,7 +330,7 @@
             padding: 30px;
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .author-info h3 {
@@ -399,7 +407,7 @@
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
 
@@ -460,20 +468,20 @@
             .header h1 {
                 font-size: 2.5rem;
             }
-            
+
             .nav-tabs {
                 flex-wrap: wrap;
             }
-            
+
             .nav-tab {
                 padding: 15px 20px;
                 font-size: 0.9rem;
             }
-            
+
             .tab-content {
                 padding: 20px;
             }
-            
+
             .feature-grid,
             .integration-steps,
             .tech-specs {
@@ -482,6 +490,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -515,9 +524,11 @@
             <div id="overview" class="tab-content active">
                 <h2 class="section-title">🚀 Project Overview</h2>
                 <div class="highlight">
-                    <p><strong>Marketo</strong> delivers a seamless Flutter application tailored for users, enhancing their shopping experience. Designed to integrate with Shopify, it provides a clean and efficient platform for browsing and purchasing products directly from your Shopify store.</p>
+                    <p><strong>Marketo</strong> delivers a seamless Flutter application tailored for users, enhancing
+                        their shopping experience. Designed to integrate with Shopify, it provides a clean and efficient
+                        platform for browsing and purchasing products directly from your Shopify store.</p>
                 </div>
-                
+
                 <div class="feature-grid">
                     <div class="feature-card">
                         <h3><i class="fas fa-shopping-cart"></i> E-Commerce Ready</h3>
@@ -554,83 +565,53 @@
                     </h3>
                     <div class="gallery-grid">
                         <div class="gallery-item">
-                            <img src="https://i.postimg.cc/YCJDY8cb/Welcome-Back.png"
-                                 alt="Welcome Screen" 
-                                 loading="eager" 
-                                 decoding="sync"
-                                 fetchpriority="high">
+                            <img src="https://i.postimg.cc/YCJDY8cb/Welcome-Back.png" alt="Welcome Screen"
+                                loading="eager" decoding="sync" fetchpriority="high">
                             <div class="caption">Welcome Screen</div>
                         </div>
                         <div class="gallery-item">
-                            <img src="https://i.postimg.cc/1X5vsj65/Explore-Our-Collection.png"
-                                 alt="Product Collection" 
-                                 loading="eager" 
-                                 decoding="sync"
-                                 fetchpriority="high">
+                            <img src="https://i.postimg.cc/1X5vsj65/Explore-Our-Collection.png" alt="Product Collection"
+                                loading="eager" decoding="sync" fetchpriority="high">
                             <div class="caption">Product Collection</div>
                         </div>
                         <div class="gallery-item">
-                            <img src="https://i.postimg.cc/jSWkDm1D/Inline-Preview-Image.png"
-                                 alt="Product Preview" 
-                                 loading="eager" 
-                                 decoding="sync"
-                                 fetchpriority="high">
+                            <img src="https://i.postimg.cc/jSWkDm1D/Inline-Preview-Image.png" alt="Product Preview"
+                                loading="eager" decoding="sync" fetchpriority="high">
                             <div class="caption">Product Preview</div>
                         </div>
                         <div class="gallery-item">
-                            <img src="https://i.postimg.cc/C14vygRQ/Your-Shopping-Cart.png"
-                                 alt="Shopping Cart" 
-                                 loading="eager" 
-                                 decoding="sync"
-                                 fetchpriority="high">
+                            <img src="https://i.postimg.cc/C14vygRQ/Your-Shopping-Cart.png" alt="Shopping Cart"
+                                loading="eager" decoding="sync" fetchpriority="high">
                             <div class="caption">Shopping Cart</div>
                         </div>
                         <div class="gallery-item">
-                            <img src="https://i.postimg.cc/439MSqvD/3.png"
-                                 alt="App Interface" 
-                                 loading="eager" 
-                                 decoding="sync"
-                                 fetchpriority="high">
+                            <img src="https://i.postimg.cc/439MSqvD/3.png" alt="App Interface" loading="eager"
+                                decoding="sync" fetchpriority="high">
                             <div class="caption">App Interface</div>
                         </div>
                         <div class="gallery-item">
-                            <img src="https://i.postimg.cc/fWKPpxXR/4.png"
-                                 alt="Product Details" 
-                                 loading="eager" 
-                                 decoding="sync"
-                                 fetchpriority="high">
+                            <img src="https://i.postimg.cc/fWKPpxXR/4.png" alt="Product Details" loading="eager"
+                                decoding="sync" fetchpriority="high">
                             <div class="caption">Product Details</div>
                         </div>
                         <div class="gallery-item">
-                            <img src="https://i.postimg.cc/Pr57jPzz/508.png"
-                                 alt="Category View" 
-                                 loading="eager" 
-                                 decoding="sync"
-                                 fetchpriority="high">
+                            <img src="https://i.postimg.cc/Pr57jPzz/508.png" alt="Category View" loading="eager"
+                                decoding="sync" fetchpriority="high">
                             <div class="caption">Category View</div>
                         </div>
                         <div class="gallery-item">
-                            <img src="https://i.postimg.cc/gJy7YhT4/511.png"
-                                 alt="Search Results" 
-                                 loading="eager" 
-                                 decoding="sync"
-                                 fetchpriority="high">
+                            <img src="https://i.postimg.cc/gJy7YhT4/511.png" alt="Search Results" loading="eager"
+                                decoding="sync" fetchpriority="high">
                             <div class="caption">Search Results</div>
                         </div>
                         <div class="gallery-item">
-                            <img src="https://i.postimg.cc/L5N0PpR1/7.png"
-                                 alt="User Profile" 
-                                 loading="eager" 
-                                 decoding="sync"
-                                 fetchpriority="high">
+                            <img src="https://i.postimg.cc/L5N0PpR1/7.png" alt="User Profile" loading="eager"
+                                decoding="sync" fetchpriority="high">
                             <div class="caption">User Profile</div>
                         </div>
                         <div class="gallery-item">
-                            <img src="https://i.postimg.cc/ZKsMK4wk/code.png"
-                                 alt="Code Structure" 
-                                 loading="eager" 
-                                 decoding="sync"
-                                 fetchpriority="high">
+                            <img src="https://i.postimg.cc/ZKsMK4wk/code.png" alt="Code Structure" loading="eager"
+                                decoding="sync" fetchpriority="high">
                             <div class="caption">Code Structure</div>
                         </div>
                     </div>
@@ -640,7 +621,7 @@
             <!-- Shopify Integration Tab -->
             <div id="shopify" class="tab-content">
                 <h2 class="section-title">🛍️ Shopify Integration</h2>
-                
+
                 <div class="integration-section">
                     <h3><i class="fas fa-rocket"></i> Quick Setup Guide</h3>
                     <div class="integration-steps">
@@ -709,7 +690,7 @@
             <!-- Features Tab -->
             <div id="features" class="tab-content">
                 <h2 class="section-title">✨ App Features</h2>
-                
+
                 <div class="feature-grid">
                     <div class="feature-card">
                         <h3><i class="fas fa-search"></i> Product Discovery</h3>
@@ -770,7 +751,7 @@
             <!-- Technical Tab -->
             <div id="technical" class="tab-content">
                 <h2 class="section-title">⚙️ Technical Specifications</h2>
-                
+
                 <div class="tech-specs">
                     <div class="spec-card">
                         <h4><i class="fas fa-language"></i> Multilingual Support</h4>
@@ -807,11 +788,12 @@
             <!-- Installation Tab -->
             <div id="installation" class="tab-content">
                 <h2 class="section-title">📥 Installation Guide</h2>
-                
+
                 <div class="highlight">
                     <h4><i class="fas fa-exclamation-triangle"></i> Prerequisites</h4>
                     <ol>
-                        <li>Flutter SDK installed (<a href="https://flutter.dev/docs/get-started/install" target="_blank">Flutter.dev</a>)</li>
+                        <li>Flutter SDK installed (<a href="https://flutter.dev/docs/get-started/install"
+                                target="_blank">Flutter.dev</a>)</li>
                         <li>VS Code or Android Studio</li>
                         <li>Android emulator or physical device</li>
                         <li>Active Shopify store with API access</li>
@@ -820,17 +802,17 @@
 
                 <h3><i class="fas fa-play"></i> Quick Start</h3>
                 <div class="code-block">
-# Clone the repository
-git clone [repository-url]
+                    # Clone the repository
+                    git clone [repository-url]
 
-# Navigate to project directory
-cd marketo_shopify
+                    # Navigate to project directory
+                    cd marketo_shopify
 
-# Install dependencies
-flutter pub get
+                    # Install dependencies
+                    flutter pub get
 
-# Run the app
-flutter run
+                    # Run the app
+                    flutter run
                 </div>
 
                 <div class="integration-steps">
@@ -860,26 +842,26 @@ flutter run
             <!-- Configuration Tab -->
             <div id="configuration" class="tab-content">
                 <h2 class="section-title">🔧 Configuration</h2>
-                
+
                 <h3><i class="fas fa-folder-tree"></i> Project Structure</h3>
                 <div class="code-block">
-marketo_shopify/
-├── lib/
-│   ├── core/
-│   │   ├── databases/
-│   │   │   └── graphql/
-│   │   │       └── graph_ql.dart
-│   │   └── enum/
-│   │       └── enums.dart
-│   ├── features/
-│   └── main.dart
-├���─ assets/
-│   ├── lang/
-│   │   ├── ar.json
-│   │   └── en.json
-│   ├── fonts/
-│   └── icons/
-└── pubspec.yaml
+                    marketo_shopify/
+                    ├── lib/
+                    │ ├── core/
+                    │ │ ├── databases/
+                    │ │ │ └── graphql/
+                    │ │ │ └── graph_ql.dart
+                    │ │ └── enum/
+                    │ │ └── enums.dart
+                    │ ├── features/
+                    │ └── main.dart
+                    ├���─ assets/
+                    │ ├── lang/
+                    │ │ ├── ar.json
+                    │ │ └── en.json
+                    │ ├── fonts/
+                    │ └── icons/
+                    └── pubspec.yaml
                 </div>
 
                 <div class="tech-specs">
@@ -915,12 +897,12 @@ marketo_shopify/
                 <div class="highlight">
                     <h4><i class="fas fa-code"></i> Language Configuration Example</h4>
                     <div class="code-block">
-{
-    "welcome": "Welcome to Marketo",
-    "products": "Products",
-    "cart": "Shopping Cart",
-    "checkout": "Checkout"
-}
+                        {
+                        "welcome": "Welcome to Marketo",
+                        "products": "Products",
+                        "cart": "Shopping Cart",
+                        "checkout": "Checkout"
+                        }
                     </div>
                 </div>
             </div>
@@ -928,7 +910,14 @@ marketo_shopify/
 
         <div class="download-section">
             <h2><i class="fas fa-rocket"></i> Get Started</h2>
-            <p>Ready to integrate Marketo with your Shopify store? Follow our comprehensive setup guide to get started!</p>
+            <p>Ready to integrate Marketo with your Shopify store? Follow our comprehensive setup guide to get started!
+            </p>
+            <div style="margin-top: 30px; margin-bottom: 30px;">
+                <a href="https://www.dropbox.com/scl/fi/b6lz7gltiavniaxg6btkx/marketo_shopify_demo.apk?rlkey=r8zq12k0o9lbg7sj42cgj4385&st=l6cu6xmv&dl=1"
+                    class="download-btn">
+                    <i class="fas fa-download"></i> Download APK Demo
+                </a>
+            </div>
             <div style="margin-top: 20px;">
                 <p style="font-size: 1.1rem; margin-bottom: 15px;"><strong>Quick Setup Steps:</strong></p>
                 <p>1. Configure your Shopify API tokens</p>
@@ -970,10 +959,10 @@ marketo_shopify/
         }
 
         // Smooth scrolling for better UX
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Add smooth scroll behavior
             document.documentElement.style.scrollBehavior = 'smooth';
-            
+
             // Add loading animation
             document.body.style.opacity = '0';
             setTimeout(() => {
@@ -983,4 +972,5 @@ marketo_shopify/
         });
     </script>
 </body>
+
 </html>
